@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ConsultorIA — Marketing + IA para PYMEs</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#050e2b;
+  --navy2:#0b1a3e;
+  --navy3:#112252;
+  --blue:#1a4fd6;
+  --blue-mid:#2563eb;
+  --blue-light:#3b82f6;
+  --cyan:#00d4ff;
+  --white:#eef2ff;
+  --muted:#7a8db8;
+  --muted2:#a8b8d8;
+  --fh:'Syne',sans-serif;
+  --fb:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:var(--fb);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(16px);background:rgba(5,14,43,.85)}
+.logo{font-family:var(--fh);font-weight:800;font-size:1.1rem;letter-spacing:-.02em}
+.logo em{font-style:normal;color:var(--cyan)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:.75rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--blue-mid) !important;color:#fff !important;padding:.45rem 1.1rem;border-radius:2rem}
+.nav-cta:hover{background:var(--blue-light) !important;color:#fff !important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2.5rem 5rem;position:relative;overflow:hidden}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,235,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.07) 1px,transparent 1px);background-size:56px 56px;pointer-events:none}
+.glow1{position:absolute;top:-15%;right:-10%;width:650px;height:650px;background:radial-gradient(ellipse,rgba(0,212,255,.13) 0%,rgba(26,79,214,.06) 45%,transparent 70%);pointer-events:none}
+.glow2{position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(26,79,214,.16) 0%,transparent 65%);pointer-events:none}
+
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,212,255,.09);border:1px solid rgba(0,212,255,.22);color:var(--cyan);font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:.38rem 1rem;border-radius:2rem;margin-bottom:2rem;z-index:1;width:fit-content;position:relative}
+.hero-tag i{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+h1{font-family:var(--fh);font-weight:800;font-size:clamp(3rem,6.5vw,5.5rem);line-height:.94;letter-spacing:-.04em;max-width:840px;z-index:1;position:relative}
+h1 .c{color:var(--cyan)}
+h1 .b{color:var(--blue-light)}
+.sub{font-size:1rem;color:var(--muted2);line-height:1.7;max-width:490px;margin:2rem 0 2.8rem;z-index:1;position:relative;font-weight:300}
+.actions{display:flex;gap:1rem;flex-wrap:wrap;z-index:1;position:relative}
+.btn{display:inline-block;padding:.88rem 2rem;border-radius:2rem;font-family:var(--fb);font-size:.88rem;font-weight:500;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
+.btn-p{background:var(--blue-mid);color:#fff;box-shadow:0 0 28px rgba(37,99,235,.35)}
+.btn-p:hover{background:var(--blue-light);transform:translateY(-2px);box-shadow:0 0 40px rgba(37,99,235,.5)}
+.btn-g{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.15)}
+.btn-g:hover{border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
+
+.stats{display:flex;gap:3rem;flex-wrap:wrap;margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,.07);z-index:1;position:relative}
+.stat-n{font-family:var(--fh);font-size:2.2rem;font-weight:800}
+.stat-n em{font-style:normal;color:var(--cyan)}
+.stat-l{font-size:.76rem;color:var(--muted);margin-top:.2rem;font-weight:300}
+
+/* MARQUEE */
+.mq{border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:.85rem 0;overflow:hidden;background:var(--navy2)}
+.mq-inner{display:flex;gap:2.5rem;animation:mq 22s linear infinite;white-space:nowrap;width:max-content}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.mq-item{font-family:var(--fh);font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:1.1rem}
+.mq-item::after{content:'◆';color:var(--cyan);font-size:.5rem}
+
+/* SECTION BASE */
+section{padding:6rem 2.5rem}
+.s-label{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:.85rem}
+.s-title{font-family:var(--fh);font-size:clamp(1.9rem,3.8vw,2.9rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:3.5rem;max-width:540px}
+
+/* SERVICES */
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:1.25rem;overflow:hidden}
+.srv-card{background:var(--navy);padding:2rem;transition:background .2s}
+.srv-card:hover{background:var(--navy2)}
+.srv-ico{width:38px;height:38px;border-radius:.55rem;background:rgba(37,99,235,.14);border:1px solid rgba(37,99,235,.22);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1.2rem}
+.srv-card h3{font-family:var(--fh);font-size:.98rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.5rem}
+.srv-card p{font-size:.81rem;color:var(--muted2);line-height:1.65;font-weight:300}
+.srv-pill{display:inline-block;margin-top:.85rem;font-size:.67rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.18);padding:.2rem .6rem;border-radius:2rem}
+
+/* HOW */
+#como-funciona{background:var(--navy2);position:relative;overflow:hidden}
+#como-funciona::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue-mid),var(--cyan),var(--blue-mid),transparent)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));margin-top:3rem}
+.step{padding:2rem 1.5rem;border-right:1px solid rgba(255,255,255,.06)}
+.step:last-child{border-right:none}
+.sn{font-family:var(--fh);font-size:2.8rem;font-weight:800;color:rgba(37,99,235,.2);line-height:1;margin-bottom:.55rem}
+.step h4{font-family:var(--fh);font-size:.93rem;font-weight:700;margin-bottom:.45rem}
+.step p{font-size:.8rem;color:var(--muted2);line-height:1.65;font-weight:300}
+.step-badge{display:inline-block;margin-top:.7rem;font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(37,99,235,.14);color:var(--blue-light);padding:.18rem .6rem;border-radius:2rem;border:1px solid rgba(59,130,246,.18)}
+
+/* FORM */
+#diagnostico{position:relative;overflow:hidden}
+#diagnostico::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue-mid),transparent)}
+.form-bg-glow{position:absolute;bottom:-30%;right:-15%;width:580px;height:580px;background:radial-gradient(ellipse,rgba(26,79,214,.12) 0%,transparent 65%);pointer-events:none}
+.form-wrap{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.form-intro{margin-bottom:2.5rem}
+.form-intro .s-title{margin-bottom:.7rem}
+.form-intro p{font-size:.92rem;color:var(--muted2);line-height:1.7;font-weight:300}
+.form-box{background:var(--navy2);border:1px solid rgba(255,255,255,.09);border-radius:1.5rem;padding:2.5rem;position:relative;overflow:hidden}
+.form-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue-mid),var(--cyan),var(--blue-mid))}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.g{display:flex;flex-direction:column;gap:.4rem}
+.g.full{grid-column:1/-1}
+label{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:.55rem;padding:.78rem .95rem;color:var(--white);font-family:var(--fb);font-size:.86rem;font-weight:300;transition:all .2s;width:100%;outline:none;-webkit-appearance:none;appearance:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue-light);background:rgba(37,99,235,.07);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.16)}
+select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a8db8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.2rem}
+select option{background:var(--navy2);color:var(--white)}
+textarea{resize:vertical;min-height:100px;line-height:1.6}
+.cb-group{display:flex;flex-direction:column;gap:.5rem;margin-top:.2rem}
+.cb-item{display:flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.83rem;color:var(--muted2);font-weight:300;transition:color .2s;user-select:none}
+.cb-item:hover{color:var(--white)}
+.cb-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--blue-mid);cursor:pointer;flex-shrink:0}
+.divider{grid-column:1/-1;border:none;border-top:1px solid rgba(255,255,255,.07);margin:.35rem 0}
+.f-section-title{grid-column:1/-1;font-family:var(--fh);font-size:.75rem;font-weight:700;letter-spacing:.1em;color:var(--cyan);text-transform:uppercase;display:flex;align-items:center;gap:.75rem}
+.f-section-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.07)}
+.submit-btn{width:100%;background:var(--blue-mid);color:#fff;border:none;padding:.95rem 2rem;border-radius:.7rem;font-family:var(--fh);font-size:.98rem;font-weight:700;cursor:pointer;transition:all .25s;margin-top:.65rem;box-shadow:0 4px 24px rgba(37,99,235,.28);letter-spacing:-.01em}
+.submit-btn:hover{background:var(--blue-light);transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,99,235,.42)}
+.submit-btn:active{transform:translateY(0)}
+.form-note{font-size:.72rem;color:rgba(255,255,255,.2);text-align:center;margin-top:.8rem;font-weight:300}
+.success{display:none;text-align:center;padding:3.5rem 2rem}
+.success-ico{font-size:2.2rem;color:var(--cyan);margin-bottom:1rem}
+.success h3{font-family:var(--fh);font-size:1.5rem;font-weight:800;margin-bottom:.75rem}
+.success p{color:var(--muted2);font-size:.88rem;font-weight:300;line-height:1.7}
+
+/* FOOTER */
+footer{padding:2.25rem 2.5rem;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.flogo{font-family:var(--fh);font-weight:800;font-size:.98rem}
+.flogo em{font-style:normal;color:var(--cyan)}
+footer p{font-size:.75rem;color:var(--muted);font-weight:300}
+
+/* ANIM */
+.fu{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.fu.v{opacity:1;transform:translateY(0)}
+
+@media(max-width:640px){
+  nav{padding:1rem 1.25rem}.nav-links{display:none}
+  .hero{padding:7rem 1.25rem 4rem}.stats{gap:1.5rem}
+  section{padding:4rem 1.25rem}
+  .fg{grid-template-columns:1fr}
+  .g.full{grid-column:1}
+  .divider{grid-column:1}.f-section-title{grid-column:1}
+  .form-box{padding:1.5rem}
+  .steps{grid-template-columns:1fr 1fr}
+  .step{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+  .step:nth-child(odd){border-right:1px solid rgba(255,255,255,.06)}
+  footer{flex-direction:column;text-align:center;padding:2rem 1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Consultor<em>IA</em></div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#diagnostico" class="nav-cta">Diagnóstico gratis</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+
+  <div class="hero-tag"><i></i>Marketing · Diseño · Inteligencia Artificial</div>
+
+  <h1>
+    Tu PYME,<br>
+    con <span class="c">estrategia</span><br>
+    <span class="b">inteligente.</span>
+  </h1>
+
+  <p class="sub">Diseñamos tu presencia digital y entrenamos agentes de IA que trabajan por vos. Más clientes, menos tiempo perdido, resultados medibles.</p>
+
+  <div class="actions">
+    <a href="#diagnostico" class="btn btn-p">Pedí tu diagnóstico gratuito →</a>
+    <a href="#servicios" class="btn btn-g">Ver servicios</a>
+  </div>
+
+  <div class="stats">
+    <div>
+      <div class="stat-n">100<em>%</em></div>
+      <div class="stat-l">Foco en PYMEs</div>
+    </div>
+    <div>
+      <div class="stat-n">48<em>h</em></div>
+      <div class="stat-l">Tiempo de respuesta</div>
+    </div>
+    <div>
+      <div class="stat-n">IA<em>+</em></div>
+      <div class="stat-l">Humanos que supervisan</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-inner">
+    <span class="mq-item">Imagen de marca</span>
+    <span class="mq-item">Diseño web</span>
+    <span class="mq-item">Redes sociales</span>
+    <span class="mq-item">Agentes de IA</span>
+    <span class="mq-item">Google Ads</span>
+    <span class="mq-item">Automatización</span>
+    <span class="mq-item">Captación de leads</span>
+    <span class="mq-item">Imagen de marca</span>
+    <span class="mq-item">Diseño web</span>
+    <span class="mq-item">Redes sociales</span>
+    <span class="mq-item">Agentes de IA</span>
+    <span class="mq-item">Google Ads</span>
+    <span class="mq-item">Automatización</span>
+    <span class="mq-item">Captación de leads</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="s-label">Lo que hacemos</div>
+  <h2 class="s-title">Todo lo que tu empresa necesita para crecer en digital</h2>
+  <div class="srv-grid">
+    <div class="srv-card fu">
+      <div class="srv-ico">✦</div>
+      <h3>Imagen de Marca</h3>
+      <p>Logo, paleta, tipografías y manual de identidad. Tu empresa con cara profesional y coherente desde el día uno.</p>
+      <span class="srv-pill">Identidad visual</span>
+    </div>
+    <div class="srv-card fu">
+      <div class="srv-ico">◈</div>
+      <h3>Diseño Web</h3>
+      <p>Sitio profesional orientado a convertir visitantes en clientes. Copy estratégico, diseño moderno y carga rápida.</p>
+      <span class="srv-pill">Web & SEO</span>
+    </div>
+    <div class="srv-card fu">
+      <div class="srv-ico">◎</div>
+      <h3>Redes Sociales</h3>
+      <p>Estrategia editorial, diseño de contenido y gestión mensual. Presencia constante sin que tengas que pensar en ello.</p>
+      <span class="srv-pill">Gestión mensual</span>
+    </div>
+    <div class="srv-card fu">
+      <div class="srv-ico">⬡</div>
+      <h3>Agentes de IA</h3>
+      <p>Chatbots entrenados con la info de tu empresa. Responden consultas, califican leads y agendan citas solos.</p>
+      <span class="srv-pill">Automatización</span>
+    </div>
+    <div class="srv-card fu">
+      <div class="srv-ico">▲</div>
+      <h3>Google Ads</h3>
+      <p>Campañas configuradas y optimizadas para que cada euro invertido trabaje al máximo. Con reportes automáticos.</p>
+      <span class="srv-pill">Performance</span>
+    </div>
+    <div class="srv-card fu">
+      <div class="srv-ico">⊕</div>
+      <h3>Email & Seguimiento</h3>
+      <p>Secuencias automáticas de email y seguimiento de clientes potenciales. Nadie se pierde en el camino.</p>
+      <span class="srv-pill">CRM & Email</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="como-funciona">
+  <div class="s-label">El proceso</div>
+  <h2 class="s-title">Cómo trabajamos con vos</h2>
+  <div class="steps">
+    <div class="step fu">
+      <div class="sn">01</div>
+      <h4>Diagnóstico</h4>
+      <p>Analizamos tu empresa, tu público y tu competencia. Sin costo, sin compromiso.</p>
+      <span class="step-badge">Gratis</span>
+    </div>
+    <div class="step fu">
+      <div class="sn">02</div>
+      <h4>Propuesta</h4>
+      <p>Te presentamos un plan a medida con servicios, tiempos y precios claros y transparentes.</p>
+      <span class="step-badge">48 horas</span>
+    </div>
+    <div class="step fu">
+      <div class="sn">03</div>
+      <h4>Ejecución</h4>
+      <p>Arrancamos con marca y web, después redes y contenido, después los agentes de IA.</p>
+      <span class="step-badge">Por fases</span>
+    </div>
+    <div class="step fu">
+      <div class="sn">04</div>
+      <h4>Automatización</h4>
+      <p>Entrenamos los agentes con la información de tu negocio. A partir de ahí, trabajan solos.</p>
+      <span class="step-badge">IA 24/7</span>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="diagnostico">
+  <div class="form-bg-glow"></div>
+  <div class="form-wrap">
+    <div class="form-intro">
+      <div class="s-label">Diagnóstico gratuito</div>
+      <h2 class="s-title">Contanos sobre tu empresa</h2>
+      <p>Completá el formulario y en menos de 48 horas te enviamos un análisis de tu presencia digital con recomendaciones concretas — sin costo y sin compromiso.</p>
+    </div>
+    <div class="form-box">
+      <form id="diag-form">
+        <div class="fg">
+
+          <div class="f-section-title">Sobre la empresa</div>
+
+          <div class="g">
+            <label for="empresa">Nombre de la empresa *</label>
+            <input type="text" id="empresa" placeholder="Ej: Estudio Pérez & Asociados" required>
+          </div>
+          <div class="g">
+            <label for="rubro">Rubro / Industria *</label>
+            <select id="rubro" required>
+              <option value="" disabled selected>Seleccioná</option>
+              <option>Gastronomía / Turismo</option>
+              <option>Servicios profesionales (legales, contables)</option>
+              <option>Comercio / Retail</option>
+              <option>Salud / Bienestar</option>
+              <option>Tecnología</option>
+              <option>Educación</option>
+              <option>Construcción / Inmobiliario</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="g">
+            <label for="pais">País donde opera *</label>
+            <select id="pais" required>
+              <option value="" disabled selected>Seleccioná</option>
+              <option>España</option>
+              <option>Argentina</option>
+              <option>Colombia</option>
+              <option>México</option>
+              <option>Chile</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="g">
+            <label for="tamano">Tamaño del equipo</label>
+            <select id="tamano">
+              <option value="" disabled selected>Seleccioná</option>
+              <option>Solo yo (1 persona)</option>
+              <option>2 a 5 personas</option>
+              <option>6 a 20 personas</option>
+              <option>Más de 20</option>
+            </select>
+          </div>
+          <div class="g full">
+            <label for="url">URL de tu sitio web (si tenés)</label>
+            <input type="url" id="url" placeholder="https://tuempresa.com">
+          </div>
+
+          <hr class="divider">
+          <div class="f-section-title">Tu presencia digital actual</div>
+
+          <div class="g full">
+            <label>¿En qué redes sociales estás presente?</label>
+            <div class="cb-group">
+              <label class="cb-item"><input type="checkbox" value="instagram"> Instagram</label>
+              <label class="cb-item"><input type="checkbox" value="facebook"> Facebook</label>
+              <label class="cb-item"><input type="checkbox" value="linkedin"> LinkedIn</label>
+              <label class="cb-item"><input type="checkbox" value="tiktok"> TikTok</label>
+              <label class="cb-item"><input type="checkbox" value="ninguna"> No tengo redes activas</label>
+            </div>
+          </div>
+          <div class="g full">
+            <label for="desafio">¿Cuál es el mayor desafío digital de tu empresa hoy? *</label>
+            <textarea id="desafio" placeholder="Ej: No consigo clientes por internet, no tengo tiempo para las redes, mi web está desactualizada..." required></textarea>
+          </div>
+
+          <hr class="divider">
+          <div class="f-section-title">¿Cómo te contactamos?</div>
+
+          <div class="g">
+            <label for="nombre">Tu nombre *</label>
+            <input type="text" id="nombre" placeholder="Nombre y apellido" required>
+          </div>
+          <div class="g">
+            <label for="email">Email *</label>
+            <input type="email" id="email" placeholder="tu@email.com" required>
+          </div>
+          <div class="g full">
+            <label for="wpp">WhatsApp (opcional)</label>
+            <input type="tel" id="wpp" placeholder="+34 600 000 000">
+          </div>
+          <div class="g full">
+            <button type="submit" class="submit-btn">Enviar y recibir diagnóstico gratis →</button>
+            <p class="form-note">Sin spam. Te respondemos en menos de 48 horas hábiles.</p>
+          </div>
+
+        </div>
+      </form>
+      <div class="success" id="ok">
+        <div class="success-ico">◆</div>
+        <h3>¡Listo, lo recibimos!</h3>
+        <p>Estamos analizando tu empresa. En menos de 48 horas te enviamos un diagnóstico personalizado a tu email con recomendaciones concretas para crecer en digital.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">Consultor<em>IA</em></div>
+  <p>Marketing · Diseño Web · Inteligencia Artificial</p>
+  <p style="color:rgba(255,255,255,.18);font-size:.7rem">© 2025 ConsultorIA — Todos los derechos reservados</p>
+</footer>
+
+<script>
+document.getElementById('diag-form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const btn = document.querySelector('.submit-btn');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  // Redes seleccionadas
+  const redes = Array.from(document.querySelectorAll('.cb-item input[type=checkbox]:checked'))
+    .map(cb => cb.value).join(', ') || 'Ninguna';
+
+  const payload = {
+    fecha:    new Date().toLocaleString('es-ES', {timeZone:'Europe/Madrid'}),
+    empresa:  document.getElementById('empresa').value,
+    rubro:    document.getElementById('rubro').value,
+    pais:     document.getElementById('pais').value,
+    tamano:   document.getElementById('tamano').value,
+    web:      document.getElementById('url').value || '—',
+    redes:    redes,
+    desafio:  document.getElementById('desafio').value,
+    nombre:   document.getElementById('nombre').value,
+    email:    document.getElementById('email').value,
+    whatsapp: document.getElementById('wpp').value || '—'
+  };
+
+  try {
+    await fetch('https://hook.eu1.make.com/z9uvusbn1ghyfzowgd9n3cik3grkfdyk', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+  } catch(err) {
+    console.error('Error al enviar:', err);
+  }
+
+  document.getElementById('diag-form').style.display = 'none';
+  document.getElementById('ok').style.display = 'block';
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')});
+},{threshold:.12});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
